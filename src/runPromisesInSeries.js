@@ -1,10 +1,9 @@
 
-
 /**
- * 串行执行Promise
- * @param fnPromises 函数集合（返回值promise）
- * @param cb 回调函数
- * @param args 第一个promise的参数
+ * 顺序执行Promise，并返回结果
+ * @param {返回promise的函数集合} fnPromises
+ * @param {每一步的回调函数，非异步,可以考虑后期支持} cb
+ * @param {附加参数} args
  * @returns {Promise.<>}
  */
 const sequence = (fnPromises,cb,...args) => {
