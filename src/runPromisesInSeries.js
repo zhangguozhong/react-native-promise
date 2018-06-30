@@ -7,21 +7,19 @@
  * @param args 第一个promise的参数
  * @returns {Promise.<>}
  */
-const sequence = (promises,cb,...args)=>{
-
+const sequence = (promises,cb,...args) => {
     const promise = Promise.resolve();
-    if (tasks.length <= 0){
+    if (promises.length <= 0){
         return promise;
     }
 
-    if (typeof cb !== 'function'){
+    if (typeof cb !== 'function') {
         cb = null;
         args = { cb, ...args };
     }
     
     let currentIndex = 0;
-    function nextPromise(...params){
-
+    function nextPromise(...params) {
         return promise.then(() => {
             return promises[currentIndex](...params);
         }).then(r => {
@@ -37,7 +35,6 @@ const sequence = (promises,cb,...args)=>{
 
     return nextPromise(...args);
 };
-
 
 const runPromisesInSeries = {
     sequence
