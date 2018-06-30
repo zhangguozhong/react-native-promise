@@ -1,7 +1,5 @@
 # react-native-promise
 
-## Usage
-
 ```javascrpt
 
 import runPromisesInSeries from 'react-native-promise'
@@ -35,4 +33,4 @@ try {
 } catch (err) {
 }
 
-```end
+```
