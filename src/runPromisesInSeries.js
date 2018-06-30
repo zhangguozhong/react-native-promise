@@ -2,17 +2,19 @@
 
 /**
  * 串行执行Promise
- * @param promises 函数集合（返回值promise）
+ * @param fnPromises 函数集合（返回值promise）
  * @param cb 回调函数
  * @param args 第一个promise的参数
  * @returns {Promise.<>}
  */
-const sequence = (promises,cb,...args) => {
+const sequence = (fnPromises,cb,...args) => {
     const promise = Promise.resolve();
-    if (promises.length <= 0){
+    //fnPromises不是数组或者数组的长度等于0
+    if (!Array.isArray(fnPromises)||fnPromises.length === 0) {
         return promise;
     }
 
+    //如果cb不是函数
     if (typeof cb !== 'function') {
         cb = null;
         args = { cb, ...args };
@@ -21,12 +23,12 @@ const sequence = (promises,cb,...args) => {
     let currentIndex = 0;
     function nextPromise(...params) {
         return promise.then(() => {
-            return promises[currentIndex](...params);
+            return fnPromises[currentIndex](...params);
         }).then(r => {
 
             ++currentIndex;
             cb && cb(r);
-            return currentIndex >= promises.length ? Promise.resolve(r): nextPromise(...r);
+            return currentIndex === fnPromises.length ? Promise.resolve(r) : nextPromise(...r);
 
         }).catch(error => {
             throw error;
