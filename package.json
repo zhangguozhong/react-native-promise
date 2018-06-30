@@ -1,8 +1,20 @@
 {
   "name": "react-native-promise",
   "version": "0.0.1",
-  "description": "test",
+  "description": "封装好的一个串行执行promise任务的js工具类",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhangguozhong/react-native-promise.git"
+  },
+  "bugs": "https://github.com/zhangguozhong/react-native-promise/issues",
+  "homepage": "https://github.com/zhangguozhong/react-native-promise.git",
+  "keywords": [
+    "sequence",
+    "promise",
+    "serial",
+    "react-native-promise"
+  ],
   "author": "zhangguozhong",
   "license": "MIT"
 }
